@@ -1,0 +1,116 @@
+<div class="header bg-white pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-2">
+          <div class="col-lg-6 col-7">
+            <h6 class="h2 text-black d-inline-block mb-0">Thông tin người dùng</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col-xl-12 order-xl-1">
+            <div class="card">
+                <div class="card-body">
+                    <form class="border border-4">
+                        <div class="pl-lg-4">
+                            <div class="row mt-3">
+                                <label class="text-black" style="font-size: 18px; font-weight: bold;">
+                                    <%= data._id%>
+                                </label>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Họ và tên:</label>
+                                        <label class="form-control-label">
+                                            <%= data.fullName%>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Ngày sinh:</label>
+                                        <label class="form-control-label">
+                                            <%= data.birthday%>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Giới tính: </label>
+                                        <% if ( data.gender == 0){%>
+                                            <label class="form-control-label">Nam</label>
+                                        <%}%>
+                                        <% if ( data.gender == 1){%>
+                                            <label class="form-control-label">Nữ</label>
+                                        <%}%>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Trạng thái: </label>
+                                        <% if ( data.status == true){%>
+                                            <i class="bg-success"></i>
+                                            <label class="form-control-label">Đang hoạt động</label>
+                                        <%}%>
+                                        <% if ( data.status == false){%>
+                                            <i class="bg-warning"></i>
+                                            <label class="form-control-label">
+                                                Chặn
+                                            </label>
+                                        <%}%>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Tiểu sử </label>
+                                        <label class="form-control-label"><%= data.bio%></label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Số lần bị báo cáo: </label>
+                                            <label class="form-control-label">
+                                                <%= data.warning%>
+                                            </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="form-control-label col-4">Ảnh đại diện: </label>
+                                <div class="col-8 text-center mb-3" >
+                                    <img height="300px" src="<%= data.avatarLink%>" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <hr class="my-4" />
+                    <div class="text-right">
+                        <a href="/remove-block/<%= data._id%>"  onclick="return confirm('Xác nhận bỏ chặn người dùng?');">
+                            <%if(data.warning > 0 && data.warning <= 3){%>
+                                <button style="border: none;" class="bg-red text-white px-2 py-1" required>Xóa Cảnh Cáo</button>
+                            <%}%>
+                            <%if(data.warning == 0 ){%>
+                               
+                            <%}%>
+                            <%if(data.warning > 3 ){%>
+                                <button style="border: none;" class="bg-red text-white px-2 py-1" required>Bỏ Chặn</button>
+                            <%}%>
+                        </a>
+                        <a href="/table-users">
+                            <button type="submit" style="border: none;" class="bg-primary text-white px-2 py-1">Quay lại</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,126 @@
+<div class="header pb-6 d-flex align-items-center background-size: cover; background-position: center top;">
+</div>
+
+<div class="container-fluid mt--6">
+  <div class="col-xl-12 order-xl-1">
+    <div class="card">
+      <div class="card-header">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <h3 class="mb-0">
+              <%= data._id%>
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <form class="">
+          <h4 class=" text-muted mb-4">Ảnh đại diện</h4>
+          <div class="pl-lg-4">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="form-group text-center">
+                  <img src="<%= data.avatarLink%>" height="150px" width="150px" alt="">
+                  <hr class="my-4" />
+                  <a href="/change-avatar"><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrop">Sửa ảnh đại diện</button></a>
+                </div>
+              </div>
+              <div class="col-lg-9">
+                <div class="col-lg-9">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-username">Số điện thoại: </label>
+                    <label class="form-control-label" for="input-username">
+                      <%= data.phoneNumber%>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-lg-9">
+                  <div class=" form-group">
+                    <label class="form-control-label" for="input-first-name">Họ và tên: </label>
+                    <label class="form-control-label" for="input-first-name">
+                      <%= data.fullName%>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-lg-9">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Ngày sinh : <%= data.birthday%></label>
+                  </div>
+                </div>
+                <div class="col-lg-9">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Ghi chú : <%= data.bio%></label>
+                  </div>
+                </div>
+                <div class="col-lg-9">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Giới tính: </label>
+                    <%if(data.gender==1){%>
+                      <label class="form-control-label" for="input-last-name">Nữ </label>
+                      <%}%>
+                        <%if(data.gender==0){%>
+                          <label class="form-control-label" for="input-last-name">Nam </label>
+                          <%}%>
+                  </div>
+                </div>
+                <div class="col-lg-9">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Lưu ý : Hoạt động</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="my-4" />
+        </form>
+        <!-- Button trigger modal -->
+        <div class="text-right">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Sửa thông tin
+          </button>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa thông tin</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="/update-text/<%= data._id%>" method="post">
+                  <div class="mb-3">
+                    <label class="form-label">Họ và tên</label>
+                    <input type="text" class="form-control" value="<%= data.fullName%>" name="fullName" id="fullName">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Giới tính</label>
+                    <select class="form-select" id="gender" name="gender">
+                      <option value="1" selected>Nam</option>
+                      <option value="2">Nữ</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Ngày sinh </label>
+                    <input class="form-control" type="date" value="ABC" id="birthday" name="birthday">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Tiểu sử</label>
+                    <input type="text" class="form-control" value="<%= data.bio%>" name="bio" id="bio">
+                  </div>
+                  <div class="text-right">
+                    <button type="submit" onclick="return confirm('Xác nhận chỉnh sửa?');"
+                      class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
